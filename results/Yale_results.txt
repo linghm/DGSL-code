@@ -1,0 +1,4 @@
+mode=1.0,f=30.0
+totalrun=20,nCluster=15,lambda=100,lambda_Z=1.0000,alpha1=1.0000,alpha2=0.0200,alpha2overalpha1=0.0200,lambda_M=100.0000,Knearest_neighbor=(7,5),tol=0.0100,maxiter=50.0
+Acc:,avgrateF=0.6473,medianF=0.6455,stdF=0.0379\n
+NMI:,avgrateF=0.6391,medianF=0.6400,stdF=0.0322\n

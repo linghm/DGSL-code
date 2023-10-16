@@ -1,1 +1,5 @@
-
+##################################################
+mode=1.0,f=80.0
+totalrun=20,nCluster=40,lambda=100,lambda_Z=0.2500,alpha1=0.5000,alpha2=0.0100,alpha2overalpha1=0.0200,lambda_M=100.0000,Knearest_neighbor=(7,5),tol=0.0100,maxiter=50.0
+Acc:,avgrateF=0.8960,medianF=0.8938,stdF=0.0268\n
+NMI:,avgrateF=0.9412,medianF=0.9398,stdF=0.0106\n
