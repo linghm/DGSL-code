@@ -1,20 +1,20 @@
 rng('default')
 totalrun= 20;
 
-Knearest = 5;
-Knearest_sigma = 3;
+Knearest = 7;
+Knearest_sigma = 5;
 
 
-load ./dataset/Umist.mat
+load ./dataset/ORL.mat
 %load ./dataset/Yale_32x32.mat
 %X = fea;
 %Y = gnd;
 k = length(unique(Y));
 n = size(X,1);
-mode = 2;
-num_mustlinks = [40:20:120];
-num_cannotlinks = 3 * num_mustlinks;
-%fs = [3,4] * k;
+mode = 1;
+% num_mustlinks = [40:20:120];
+% num_cannotlinks = 3 * num_mustlinks;
+fs = [2] * k;
 para.k = k;
 display = true;
 para.tol = 1e-2; 
@@ -22,7 +22,7 @@ para.maxiter = 50;
 para.lambda = 100; 
 para.alpha2overalpha1 = 0.02; 
 para.alpha1s = [0.5]; %[0.05,0.1,0.25,0.5,1.0,2.5,5.0,10]; 
-para.lambda_Zs =[2.5]; % [0.1,0.25,0.5,1.0,2.5,5.0];  
+para.lambda_Zs =[0.25]; % [0.1,0.25,0.5,1.0,2.5,5.0];  
 para.lambda_M = 100; 
 rho = 1.0; 
 
@@ -39,10 +39,10 @@ W_SC = weight_calv2(X',Knearest,Knearest_sigma);
 W_SC = (W_SC + W_SC') * 0.5;
 
 
-for outer_iter = 1: length(num_mustlinks)
-    %f = fs(outer_iter);
-    num_mustlink = num_mustlinks(outer_iter);
-    num_cannotlink = num_cannotlinks(outer_iter);
+for outer_iter = 1: length(fs)
+    f = fs(outer_iter);
+%     num_mustlink = num_mustlinks(outer_iter);
+%     num_cannotlink = num_cannotlinks(outer_iter);
     for middle_iter  = 1 : length(para.lambda_Zs)
         para.lambda_Z = para.lambda_Zs(middle_iter);
         for iter = 1: length(para.alpha1s)
@@ -125,7 +125,7 @@ for outer_iter = 1: length(num_mustlinks)
             output4 = ['NMI:',...
                      ',avgrateF=' num2str(mean(NMIF),'%.4f'),',medianF=' num2str(median(NMIF),'%.4f'),',stdF=' num2str(std(NMIF),'%.4f'),'\n'
                       ];        
-            fid = fopen('./results/umist_results.txt','a');
+            fid = fopen('./results/ORL_results.txt','a');
             fprintf(fid, '%s\n', output1);
             fprintf(fid, '%s\n', output2);
             fprintf(fid, '%s\n', output3);
